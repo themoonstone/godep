@@ -80,6 +80,8 @@ func updateGoVersion() error {
 }
 
 func update(args []string) error {
+	log.Println("---------------update-----------------")
+
 	if len(args) == 0 {
 		args = []string{"."}
 	}
@@ -200,6 +202,7 @@ func fillDeps(deps []Dependency) ([]Dependency, error) {
 
 		vcs, reporoot, err := VCSFromDir(p.Dir, filepath.Join(p.Root, "src"))
 		if err != nil {
+			log.Println("error of VCSFromDir : ", err)
 			return nil, errorLoadingDeps
 		}
 		deps[i].root = filepath.ToSlash(reporoot)
